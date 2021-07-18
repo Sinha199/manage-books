@@ -88,3 +88,42 @@ deleteBook = async(req,res)=>{
     })
     .catch(err=>console.log(err))
 }
+
+getBookById = async(req,res)=>{
+    await Book.findOne({_id:req.params.id},(err,book)=>{
+        if(err){
+            return res.status(400).json({success:false,error:err})
+        }
+        if(!book)
+        {
+            return res
+                .status(404)
+                .json({success:false,error:'Book not found'})
+        }
+        return res.status(200).json({success:true,data:book})
+
+    })
+    .catch(err=>console.log(err))
+}
+
+getBook = async(req,res)=>{
+    await Book.find({},(err,book)=>{
+            if (err) {
+                return res.status(400).json({ success: false, error: err })
+            }
+            if (!movies.length) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: `Movie not found` })
+            }
+            return res.status(200).json({ success: true, data: movies })
+        }).catch(err => console.log(err))
+}
+
+module.exports={
+    createBook,
+    updateBook,
+    deleteBook,
+    getBook,
+    getBookById,
+}
