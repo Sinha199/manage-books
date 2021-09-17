@@ -8,6 +8,6 @@ router.get('/book/:id' , movieController.getBookById)
 router.get('/book',movieController.getBook)
 router.post('/book' , movieController.createBook)
 router.put('/book/:id', movieController.updateBook)
-router.delete('/book/:id',movieController.deleteBooknpm)
+router.delete('/book/:id',movieController.deleteBook)
 
 module.exports=router
